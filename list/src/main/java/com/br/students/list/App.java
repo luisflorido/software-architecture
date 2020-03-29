@@ -1,7 +1,6 @@
 package com.br.students.list;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import java.util.HashSet;
 import java.util.Scanner;
 
 /**
@@ -14,33 +13,23 @@ public class App {
      */
     private static boolean run;
     private static Scanner scanner;
-    private static ArrayList<String> arlist;
+    private static HashSet<String> arlist;
 
     public static void main(String[] args) {
         scanner = new Scanner(System.in);
-        arlist = new ArrayList<>();
+        arlist = new HashSet<>();
         run = true;
 
         carregarMenu();
 
         scanner.close();
     }
-
-    /*
-        Método para limpar string retirando espaços e deixando letras minúsculas
-     */
-    private static String clearString(String str){
-        return str.toLowerCase().replaceAll(" ", "");
-    }
     
     private static void criarAluno() {
     	System.out.println("Digite o nome do aluno: ");
 
         String name = scanner.nextLine();
-        Optional<String> aluno = arlist.stream().filter(e -> clearString(e).equals(clearString(name))).findAny();
-        if (!aluno.isPresent()) {
-            arlist.add(name);
-        } else {
+        if (!arlist.add(name)) {
             System.out.println("O aluno já esta cadastrado!");
             criarAluno();
         }
@@ -82,7 +71,7 @@ public class App {
             	case "3":
             		break;
             	default:
-            		System.out.println("Digite uma op��o v�lida");
+            		System.out.println("Digite uma opção válida");
                     exibirMenu();
                     break;
             }
