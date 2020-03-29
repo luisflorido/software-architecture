@@ -70,36 +70,21 @@ public class App {
         while (run) {
         	exibirMenu();
             String option = scanner.nextLine();
-
-            if (option.equals("1")) {
-            	criarAluno();
-            	System.out.println("Aluno Cadastrado");
-//                System.out.println("Digite o nome do aluno: ");
-//
-//                String name = scanner.nextLine();
-//                Optional<String> aluno = arlist.stream().filter(e -> clearString(e).equals(clearString(name))).findAny();
-//                if (!aluno.isPresent()) {
-//                    arlist.add(name);
-//                } else {
-//                    System.out.println("O aluno já esta cadastrado!");
-//                }
-            	
-            } else if (option.equals("2")) {
-//            	System.out.println("Listando ...");
-//                /*
-//                    Method reference
-//                    poderia ser utilizado também com lambda
-//                    arlist.forEach(e -> System.out.println(e));
-//                    for ou for each padrão
-//                 */
-//                arlist.forEach(System.out::println);
-//                System.out.println("");
-            	listarAlunos();
-            } else if (option.equals("3")) {
-                run = false;
-            } else {
-                System.out.println("Digite uma opção válida");
-                exibirMenu();
+            
+            switch(option) {
+            	case "1":
+            		criarAluno();
+                	System.out.println("Aluno Cadastrado");
+                	break;
+            	case "2":
+                	listarAlunos();
+                	break;
+            	case "3":
+            		break;
+            	default:
+            		System.out.println("Digite uma op��o v�lida");
+                    exibirMenu();
+                    break;
             }
         }
     }
